@@ -1,6 +1,7 @@
 const chef_handler = require("../handlers/chefHandler");
 
 exports.getChefs = async (req, res) => {
+    console.log("v3")
         await chef_handler.getChefs(req, res);
 };
 exports.getChef = async (req, res) => {
@@ -18,4 +19,5 @@ exports.updateChef = async (req, res) => {
 exports.addChef = async (req, res) => {
     await chef_handler.addChef(req,res);
 };
+
 

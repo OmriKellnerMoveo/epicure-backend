@@ -11,7 +11,7 @@ exports.getRestaurants =(req,res) => {
 };
 
 exports.getRestaurant = (req,res) => {
-    Restaurants.findById(req.params.id).then(data => {
+    Restaurants.findById(req.params.id).populate({path:"chef_id"}).then(data => {
    data? res.send(data) :  res.send('id not exists!')
   }).catch(err => {
         console.log(err)
