@@ -18,6 +18,11 @@ exports.updateDish = async (req, res) => {
 exports.addDish = async (req, res) => {
     await dish_handler.addDish(req,res);
 };
+exports.getRestaurantsByDish = async (req, res) => {
+    await dish_handler.getRestaurantsByDish(req,res);
+};
+
+
 
 
 
