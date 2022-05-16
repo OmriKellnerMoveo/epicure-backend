@@ -1,0 +1,23 @@
+const dish_handler = require("../handlers/dishHandler");
+
+exports.getDishes = async (req, res) => {
+    await dish_handler.getDishes(req, res);
+};
+exports.getDish = async (req, res) => {
+    await dish_handler.getDish(req,res);
+}
+
+exports.deleteDish = async (req, res) => {
+    await dish_handler.deleteDish(req,res);
+};
+
+exports.updateDish = async (req, res) => {
+    await dish_handler.updateDish(req,res);
+};
+
+exports.addDish = async (req, res) => {
+    await dish_handler.addDish(req,res);
+};
+
+
+
