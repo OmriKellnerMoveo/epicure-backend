@@ -2,7 +2,7 @@ const Dishes = require("../models/dish");
 const {ObjectId} = require("mongodb");
 
 exports.getDishes = (req, res) => {
-    Dishes.find({})
+    Dishes.find({}).populate({path: "restaurant_id"})
         .then(data => {
             res.send(data)
         }).catch(err => {
