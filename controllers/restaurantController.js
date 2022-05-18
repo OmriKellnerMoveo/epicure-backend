@@ -20,6 +20,11 @@ exports.addRestaurant = async (req, res) => {
 };
 
 
+exports.getRestaurantsByName = async (req, res) => {
+    await restaurant_handler.getRestaurantsByName(req,res);
+};
+
+
 
 
 

@@ -1,5 +1,7 @@
 const Dishes = require("../models/dish");
+
 const {ObjectId} = require("mongodb");
+const Restaurants = require("../models/restaurant");
 
 exports.getDishes = (req, res) => {
     Dishes.find({}).populate({path: "restaurant_id"})
@@ -36,7 +38,6 @@ exports.updateDish = (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            console.log(err)
             res.send('id not exists!');
         });
 };
@@ -60,7 +61,6 @@ exports.addDish = (req, res) => {
 
 exports.getRestaurantsByDish = async (req, res) => {
     try {
-        console.log("before 1")
         const response = await Dishes.aggregate([{
             $match: {
                 _id: ObjectId(req.params.id)
@@ -75,3 +75,20 @@ exports.getRestaurantsByDish = async (req, res) => {
         console.log(err)
     }
 }
+exports.getDishesByName = (req, res) => {
+    Dishes.find({$or:[{name: {$regex : ".*"+req.params.id+".*"}},{description: {$regex : ".*"+req.params.id+".*"}}]}
+    )
+        .populate({path: "restaurant_id"})
+        .then(dishes => {
+            Restaurants.find({name: {$regex : ".*"+req.params.id+".*"}}).populate({path: "chef_id"}).then(restaurants => {
+                const data ={
+                    "dishes":dishes,
+                    "restaurants":restaurants
+                }
+                res.send(data)
+            })
+        }).catch(err => {
+            console.log(err)
+            res.send('no result found...');
+        })
+};
