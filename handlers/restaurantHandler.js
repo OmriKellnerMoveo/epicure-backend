@@ -46,3 +46,12 @@ exports.addRestaurant = (req,res) => {
         console.log(err);
       });
 };
+
+// exports.getRestaurantsByName = (req, res) => {
+//     Restaurants.find({name: {$regex : ".*"+req.params.id+".*"}}).populate({path: "chef_id"}).then(data => {
+//         data ? res.send(data) : res.send('no result found...')
+//     }).catch(err => {
+//         console.log(err)
+//         res.send('no result found...');
+//     });
+// };
