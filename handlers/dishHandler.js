@@ -41,6 +41,7 @@ exports.updateDish = (req, res) => {
             res.send('id not exists!');
         });
 };
+
 exports.addDish = (req, res) => {
     const Dish = new Dishes({
         name: req.body.name,
@@ -91,4 +92,15 @@ exports.getDishesByName = (req, res) => {
             console.log(err)
             res.send('no result found...');
         })
+};
+
+exports.getSignatureDish = (req, res) => {
+    Restaurants.find({})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            console.log(err);
+            res.send('dish id not exists!');
+        });
 };

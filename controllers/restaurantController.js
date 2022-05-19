@@ -19,9 +19,8 @@ exports.addRestaurant = async (req, res) => {
     await restaurant_handler.addRestaurant(req,res);
 };
 
-
-exports.getRestaurantsByName = async (req, res) => {
-    await restaurant_handler.getRestaurantsByName(req,res);
+exports.getPopularRestaurants = async (req, res) => {
+    await restaurant_handler.getPopularRestaurants(req,res);
 };
 
 

@@ -11,7 +11,7 @@ exports.getRestaurants =(req,res) => {
 };
 
 exports.getRestaurant = (req,res) => {
-    Restaurants.findById(req.params.id).populate({path:"chef_id"}).then(data => {
+    Restaurants.findById(req.params.id).populate([{path: "chef_id"},{path:"signature_dish"}]).then(data => {
    data? res.send(data) :  res.send('id not exists!')
   }).catch(err => {
         console.log(err)
@@ -47,11 +47,11 @@ exports.addRestaurant = (req,res) => {
       });
 };
 
-// exports.getRestaurantsByName = (req, res) => {
-//     Restaurants.find({name: {$regex : ".*"+req.params.id+".*"}}).populate({path: "chef_id"}).then(data => {
-//         data ? res.send(data) : res.send('no result found...')
-//     }).catch(err => {
-//         console.log(err)
-//         res.send('no result found...');
-//     });
-// };
+exports.getPopularRestaurants = (req, res) => {
+    Restaurants.find({isPopular:true}).populate({path: "chef_id"}).then(data => {
+        data ? res.send(data) : res.send('no result found...')
+    }).catch(err => {
+        console.log(err)
+        res.send('no result found...');
+    });
+};
