@@ -27,6 +27,11 @@ exports.getDishesByName = async (req, res) => {
 };
 
 
+exports.getSignatureDish = async (req, res) => {
+    await dish_handler.getSignatureDish(req,res);
+};
+
+
 
 
 

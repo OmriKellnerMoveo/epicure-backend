@@ -7,6 +7,10 @@ const restaurantSchema = new Schema({
     chef_id:{type: Schema.Types.ObjectId,
         required: true,
         ref:'Chefs'},
+    isPopular: {type:Boolean},
+    signature_dish:{type: Schema.Types.ObjectId,
+        required: true,
+        ref:'Dishes'},
 })
 module.exports = mongoose.model("Restaurant",restaurantSchema);
 
