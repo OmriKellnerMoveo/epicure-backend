@@ -1,4 +1,6 @@
 const Restaurants = require("../models/restaurant");
+const dish_controller = require("../controllers/dishController");
+const Dishes = require("../models/dish");
 
 exports.getRestaurants =(req,res) => {
     Restaurants.find({})
@@ -19,12 +21,26 @@ exports.getRestaurant = (req,res) => {
   });
 };
 exports.deleteRestaurant = (req,res) => {
-    Restaurants.findByIdAndDelete(req.params.id).then(data => {
-    data ? res.send("Restaurant " + req.params.id + " delete successfully"):    res.send('id not exists!');
+    Restaurants.findByIdAndDelete(req.params.id).then(restaurant => {
+    restaurant ?
+        Dishes.deleteMany({restaurant_id:req.params.id})
+            .then(dishes => {
+                dishes && res.send("Restaurant " + req.params.id + "  and all of their dishes deleted successfully")
+            }).catch(err => {
+            console.log(err)
+            res.send(err);
+        })
+        : res.send('id not exists!');
   }).catch(err => {
     res.send(err);
   });
 };
+
+
+
+
+
+
 
 exports.updateRestaurant = (req,res) => {
     Restaurants.findByIdAndUpdate(req.params.id, req.body, {new: true})
