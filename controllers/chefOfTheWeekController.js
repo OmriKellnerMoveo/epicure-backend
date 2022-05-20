@@ -20,4 +20,9 @@ exports.deleteChefOfTheWeek = async (req, res) => {
 };
 
 
+exports.getChefOfTheWeekRestaurants = async (req, res) => {
+    await chefOfTheWeek_handler.getChefOfTheWeekRestaurants(req,res);
+};
+
+
 

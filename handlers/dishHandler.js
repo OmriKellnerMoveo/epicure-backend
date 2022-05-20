@@ -95,7 +95,7 @@ exports.getDishesByName = (req, res) => {
 };
 
 exports.getSignatureDish = (req, res) => {
-    Restaurants.find({})
+    Restaurants.find({signature_dish: {$exists: true}}).populate({path:"signature_dish"})
         .then(data => {
             res.send(data);
         })
