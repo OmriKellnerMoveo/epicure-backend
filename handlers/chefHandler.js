@@ -1,4 +1,6 @@
 const Chefs = require("../models/chef");
+const ChefOfTheWeek = require("../models/chefOfTheWeek");
+
 
 exports.getChefs =(req,res) => {
   Chefs.find({})
@@ -19,12 +21,19 @@ exports.getChef = (req,res) => {
   });
 };
 exports.deleteChef = (req,res) => {
-  Chefs.findByIdAndDelete(req.params.id).then(data => {
-    data ? res.send("chef " + req.params.id + " delete successfully"):    res.send('id not exists!');
-  }).catch(err => {
-    res.send(err);
-      console.log(err)
-  });
+    ChefOfTheWeek.findOne({chef_id:req.params.id}).then(chefOfTheWeek=>{
+        chefOfTheWeek?res.send(`Cant remove Chef ${req.params.id} because he is the Chef Of The Week!`)
+            :
+            Chefs.findByIdAndDelete(req.params.id).then(data => {
+                data ? res.send("chef " + req.params.id + " delete successfully"):    res.send('id not exists!');
+            }).catch(err => {
+                res.send(err);
+                console.log(err)
+            });
+    }).catch(err => {
+        res.send(err);
+        console.log(err)
+    });
 };
 
 exports.updateChef = (req,res) => {

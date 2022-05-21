@@ -1,7 +1,5 @@
 const ChefOfTheWeek = require("../models/chefOfTheWeek");
 const Restaurants = require("../models/restaurant");
-const {ObjectId} = require("mongodb");
-const Dishes = require("../models/dish");
 
 exports.getChefOfTheWeek = (req, res) => {
     ChefOfTheWeek.findOne().populate({path: "chef_id"}).then(data => {
