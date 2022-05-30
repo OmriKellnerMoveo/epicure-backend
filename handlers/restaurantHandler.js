@@ -3,7 +3,7 @@ const dish_controller = require("../controllers/dishController");
 const Dishes = require("../models/dish");
 
 exports.getRestaurants =(req,res) => {
-    Restaurants.find({})
+    Restaurants.find({}).populate([{path: "chef_id"},{path:"signature_dish"}])
         .then(data => {
             res.send(data)
         }).catch(err => {
