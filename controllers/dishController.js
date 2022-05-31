@@ -21,6 +21,9 @@ exports.addDish = async (req, res) => {
 exports.getRestaurantsByDish = async (req, res) => {
     await dish_handler.getRestaurantsByDish(req,res);
 };
+exports.getDishesByRestaurants = async (req, res) => {
+    await dish_handler.getDishesByRestaurants(req,res);
+};
 
 exports.getDishesByName = async (req, res) => {
     await dish_handler.getDishesByName(req,res);
