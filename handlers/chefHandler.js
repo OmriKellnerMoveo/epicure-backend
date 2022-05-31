@@ -21,7 +21,7 @@ exports.getChef = (req,res) => {
   });
 };
 exports.deleteChef = (req,res) => {
-    ChefOfTheWeek.findOne({chef_id:req.params.id}).then(chefOfTheWeek=>{
+    ChefOfTheWeek.findOne({Chef:req.params.id}).then(chefOfTheWeek=>{
         chefOfTheWeek?res.send(`Cant remove Chef ${req.params.id} because he is the Chef Of The Week!`)
             :
             Chefs.findByIdAndDelete(req.params.id).then(data => {
