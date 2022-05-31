@@ -76,6 +76,18 @@ exports.getRestaurantsByDish = async (req, res) => {
         console.log(err)
     }
 }
+
+exports.getDishesByRestaurants = (req, res) => {
+    Dishes.find({restaurant_id: req.params.id})
+        .populate({path: "restaurant_id"})
+        .then(data => {
+            data ? res.send(data) : res.send('id not exists!')
+        }).catch(err => {
+        console.log(err)
+        res.send('id not exists!');
+    });
+};
+
 exports.getDishesByName = (req, res) => {
     Dishes.find({$or:[{name: {$regex : ".*"+req.params.id+".*"}},{description: {$regex : ".*"+req.params.id+".*"}}]}
     )
