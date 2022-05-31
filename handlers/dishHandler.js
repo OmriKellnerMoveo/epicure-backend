@@ -93,7 +93,7 @@ exports.getDishesByName = (req, res) => {
     )
         .populate({path: "restaurant_id"})
         .then(dishes => {
-            Restaurants.find({name: {$regex : ".*"+req.params.id+".*"}}).populate({path: "chef_id"}).then(restaurants => {
+            Restaurants.find({name: {$regex : ".*"+req.params.id+".*"}}).populate({path: "Chef"}).then(restaurants => {
                 const data ={
                     "dishes":dishes,
                     "restaurants":restaurants

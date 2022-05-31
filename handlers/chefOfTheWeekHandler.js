@@ -2,7 +2,7 @@ const ChefOfTheWeek = require("../models/chefOfTheWeek");
 const Restaurants = require("../models/restaurant");
 
 exports.getChefOfTheWeek = (req, res) => {
-    ChefOfTheWeek.findOne().populate({path: "chef_id"}).then(data => {
+    ChefOfTheWeek.findOne().populate({path: "Chef"}).then(data => {
         data ? res.send(data) : res.send('Chef not exists!')
     }).catch(err => {
         console.log(err)
@@ -22,7 +22,7 @@ exports.updateChefOfTheWeek = (req, res) => {
 };
 
 exports.addChefOfTheWeek = (req, res) => {
-    const Chef = new ChefOfTheWeek({chef_id: req.body.chef_id});
+    const Chef = new ChefOfTheWeek({Chef: req.body.Chef});
     Chef.save()
         .then(data => {
             res.send(data)
@@ -45,7 +45,7 @@ exports.deleteChefOfTheWeek = (req, res) => {
 
 exports.getChefOfTheWeekRestaurants = (req, res) => {
     ChefOfTheWeek.findOne().then(chefOfTheWeek=>{
-        Restaurants.find({chef_id:chefOfTheWeek.chef_id}).then(data=>{
+        Restaurants.find({Chef:chefOfTheWeek.Chef}).then(data=>{
             res.send(data)
         })
     }).catch(err => {

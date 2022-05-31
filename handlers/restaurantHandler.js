@@ -3,7 +3,7 @@ const dish_controller = require("../controllers/dishController");
 const Dishes = require("../models/dish");
 
 exports.getRestaurants =(req,res) => {
-    Restaurants.find({}).populate([{path: "chef_id"},{path:"signature_dish"}])
+    Restaurants.find({}).populate([{path: "Chef"},{path:"signature_dish"}])
         .then(data => {
             res.send(data)
         }).catch(err => {
@@ -13,7 +13,7 @@ exports.getRestaurants =(req,res) => {
 };
 
 exports.getRestaurant = (req,res) => {
-    Restaurants.findById(req.params.id).populate([{path: "chef_id"},{path:"signature_dish"}]).then(data => {
+    Restaurants.findById(req.params.id).populate([{path: "Chef"},{path:"signature_dish"}]).then(data => {
    data? res.send(data) :  res.send('id not exists!')
   }).catch(err => {
         console.log(err)
@@ -53,7 +53,7 @@ exports.updateRestaurant = (req,res) => {
       });
 };
 exports.addRestaurant = (req,res) => {
-  const Restaurant = new Restaurants({name: req.body.name, image: req.body.image, chef_id: req.body.chef_id});
+  const Restaurant = new Restaurants({name: req.body.name, image: req.body.image, Chef: req.body.Chef, isPopular:req.body.isPopular});
     Restaurant.save()
       .then(data => {
         res.send(data)
@@ -64,7 +64,7 @@ exports.addRestaurant = (req,res) => {
 };
 
 exports.getPopularRestaurants = (req, res) => {
-    Restaurants.find({isPopular:true}).populate({path: "chef_id"}).then(data => {
+    Restaurants.find({isPopular:true}).populate({path: "Chef"}).then(data => {
         data ? res.send(data) : res.send('no result found...')
     }).catch(err => {
         console.log(err)

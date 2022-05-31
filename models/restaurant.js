@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const restaurantSchema = new Schema({
     name: { type: String, required: true },
     image: { type: String},
-    chef_id:{type: Schema.Types.ObjectId,
+    Chef:{type: Schema.Types.ObjectId,
         required: true,
         ref:'Chefs'},
     isPopular: {type:Boolean},
