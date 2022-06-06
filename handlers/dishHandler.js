@@ -24,7 +24,7 @@ exports.getDish = (req, res) => {
 
 exports.deleteDish = (req, res) => {
     Dishes.findByIdAndDelete(req.params.id).then(data => {
-        data ? res.send("Dish " + req.params.id + " delete successfully") : res.send('id not exists!');
+        data ? res.send({"dish_id": req.params.id,"success":true}) : res.send('id not exists!');
     }).catch(err => {
         console.log(err)
         res.send(err);

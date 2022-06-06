@@ -25,7 +25,7 @@ exports.deleteRestaurant = (req,res) => {
     restaurant ?
         Dishes.deleteMany({restaurant_id:req.params.id})
             .then(dishes => {
-                dishes && res.send("Restaurant " + req.params.id + "  and all of their dishes deleted successfully")
+                dishes && res.send({"restaurants_id": req.params.id,"success":true})
             }).catch(err => {
             console.log(err)
             res.send(err);

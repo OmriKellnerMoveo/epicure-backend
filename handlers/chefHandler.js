@@ -25,7 +25,7 @@ exports.deleteChef = (req,res) => {
         chefOfTheWeek?res.send(`Cant remove Chef ${req.params.id} because he is the Chef Of The Week!`)
             :
             Chefs.findByIdAndDelete(req.params.id).then(data => {
-                data ? res.send("chef " + req.params.id + " delete successfully"):    res.send('id not exists!');
+                data ? res.send({"chef_id":req.params.id ,"success":true}):    res.send('id not exists!');
             }).catch(err => {
                 res.send(err);
                 console.log(err)
