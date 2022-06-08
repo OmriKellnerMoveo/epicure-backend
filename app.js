@@ -1,3 +1,4 @@
+
 const express = require('express');
 const errorController = require('./controllers/error');
 const app = express();
@@ -9,6 +10,8 @@ const corsOptions ={
     credentials:true,
     optionSuccessStatus:200,
 }
+const dotenv = require('dotenv');
+dotenv.config();
 
 app.use(cors(corsOptions))
 app.use(express.json())
@@ -16,6 +19,7 @@ app.use(express.json())
 app.use((req, res, next) => {
     next();
 });
+
 
 app.use('/api',mainRoutes);
 app.use(errorController.get404);

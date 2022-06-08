@@ -13,7 +13,7 @@ exports.getChefOfTheWeek = (req, res) => {
 exports.updateChefOfTheWeek = (req, res) => {
     ChefOfTheWeek.findOneAndUpdate({}, req.body, {new: true})
         .then(data => {
-            res.send(data);
+            res.send({"data":req.body,"success":true});
         })
         .catch(err => {
             console.log(err);

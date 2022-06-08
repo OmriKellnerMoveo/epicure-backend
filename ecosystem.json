@@ -1,0 +1,29 @@
+{
+  "apps": [
+    {
+      "name": "epicure-server",
+      "script": "./app.js",
+      "env": {
+      }
+    }
+  ],
+  "deploy": {
+    "staging": {
+      "key": "~/.ssh/epicure-Omri.pem",
+      "user": "ubuntu",
+      "host": [
+       "ec2-174-129-68-231.compute-1.amazonaws.com"
+      ],
+      "ref": "origin/master",
+      "repo": "git@github.com:OmriKellnerMoveo/epicure-backend.git",
+      "path": "/home/ubuntu/epicure/server",
+      "ssh_options": "StrictHostKeyChecking=no",
+      "post-deploy": "mkdir -p logs && npm i && pm2 reload ecosystem.json --env staging",
+      "pre-deploy-local": "echo 'Deploying code to servers'",
+      "env": {
+        "NODE_ENV": "staging"
+      }
+    }
+  }
+}
+
