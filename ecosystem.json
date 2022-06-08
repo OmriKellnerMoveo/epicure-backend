@@ -9,7 +9,7 @@
   ],
   "deploy": {
     "staging": {
-      "key": "/Users/Downloads/epicure-Omri.pem",
+      "key": "/Users/omrikellner/.ssh/epicure-Omri.pem",
       "user": "ubuntu",
       "host": [
        "ec2-174-129-68-231.compute-1.amazonaws.com"
