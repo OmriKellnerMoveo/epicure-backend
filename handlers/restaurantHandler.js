@@ -53,7 +53,7 @@ exports.updateRestaurant = (req,res) => {
       });
 };
 exports.addRestaurant = (req,res) => {
-  const Restaurant = new Restaurants({name: req.body.name, image: req.body.image, Chef: req.body.Chef, isPopular:req.body.isPopular});
+  const Restaurant = new Restaurants({name: req.body.name, image: req.body.image, Chef: req.body.Chef, isPopular:req.body.isPopular,signature_dish:null});
     Restaurant.save()
       .then(data => {
         res.send(data)
